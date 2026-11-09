@@ -2,9 +2,9 @@
 setlocal
 cd /d "%~dp0"
 rem Changeling Natio Realtime runs in Changeling Natio's environment: it needs Changeling Natio and Changeling
-rem Simia Realtime next to this folder (as in Changeling Studio). Missing ones are fetched here.
+rem Imago Realtime next to this folder (as in Changeling Studio). Missing ones are fetched here.
 set "STUDIO=%~dp0.."
-for %%A in (Natio Simia-Realtime) do (
+for %%A in (Natio Imago-Realtime) do (
     if not exist "%STUDIO%\Changeling-%%A" (
         echo Getting Changeling %%A ...
         git clone https://github.com/CursedPrograms/Changeling-%%A "%STUDIO%\Changeling-%%A" || goto :error
@@ -21,8 +21,8 @@ if not defined PY (
     call "%STUDIO%\Changeling-Natio\run.bat" --download-models
     set "PY=%STUDIO%\Changeling-Natio\psdenv\Scripts\python.exe"
 )
-if not exist "%STUDIO%\Changeling-Simia-Realtime\venv\Scripts\python.exe" (
-    echo Changeling Simia Realtime isn't set up yet: start its run.bat once, then come back.
+if not exist "%STUDIO%\Changeling-Imago-Realtime\venv\Scripts\python.exe" (
+    echo Changeling Imago Realtime isn't set up yet: start its run.bat once, then come back.
 )
 
 "%PY%" live.py %*
